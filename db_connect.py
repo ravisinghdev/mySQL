@@ -1,6 +1,6 @@
 import mysql.connector
 
-# Establishing the connection b/w to MySQL
+# Establishing the connection b/w python and MySQL
 try:
     connection = mysql.connector.connect(
         host="localhost",      # Replace with your MySQL server address
@@ -13,7 +13,7 @@ try:
         print("Connected to MySQL!")
         cursor = connection.cursor()
         
-        # Step 1: Create a table
+        # Step 1: Creating a table
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,16 +31,16 @@ try:
             ("Charlie", 22)
         ]
         cursor.executemany(insert_query, values)
-        connection.commit()  # Commit changes to the database
+        connection.commit()  # Commiting changes to the database
         print("Inserted sample data into 'users' table.")
 
-        # Step 3: Query the data
+        # Step 3: Querying for the data
         cursor.execute("SELECT * FROM users")
         print("\nData in 'users' table:")
         for row in cursor.fetchall():
             print(row)
 
-        # Keep connection open for additional queries
+        # Keeping connection open for additional queries
         while True:
             query = input("\nEnter an SQL query (or type 'exit' to quit): ")
             if query.lower() == 'exit':
